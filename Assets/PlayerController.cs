@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     public GameObject[] collectables;
     Rigidbody2D rb;
     bool isGrounded;
+    Animator anim;
+    SpriteRenderer spriteRenderer;
 
     public LayerMask whatIsGround;
     public float movementSpeed = 5;
@@ -30,6 +32,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
         ResetCollectables();
     }
 
@@ -39,6 +43,7 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * movementSpeed, rb.velocity.y);
 
         isGrounded = Physics2D.OverlapCircle(groudCheckPosition.position, .1f, whatIsGround);
+        anim.SetBool("Grounded", isGrounded);
 
         //Handle Coyote Time
         if (isGrounded)
@@ -67,6 +72,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpBufferCount = 0;
+            Debug.Log("Salto");
         }
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0)
@@ -81,11 +87,11 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetAxisRaw("Horizontal") > 0)
         {
-            
+            spriteRenderer.flipX = true;
         }// Moving Right
         else if (Input.GetAxisRaw("Horizontal") < 0)
         {
-            
+            spriteRenderer.flipX = false;
         }// Moving Left
         else
         {
