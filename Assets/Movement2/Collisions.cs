@@ -19,4 +19,11 @@ public class Collisions : MonoBehaviour
     {
         isGrounded = Physics2D.OverlapCircle(groudCheckPosition.position, .1f, whatIsGround);
     }
+
+    void OnDrawGizmosSelected()
+    {
+        // Draw a yellow sphere at the transform's position
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(groudCheckPosition.position, .1f);
+    }
 }

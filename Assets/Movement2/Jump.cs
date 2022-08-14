@@ -5,6 +5,7 @@ using UnityEngine;
 public class Jump : MonoBehaviour
 {
     Rigidbody2D rb;
+    bool inAir;
 
     //Jump
     public float jumpForce = 5;
@@ -13,7 +14,6 @@ public class Jump : MonoBehaviour
 
     //Fall faster
     public float fallMultiplier = 2.5f;
-    public float lowJumpMultiplier = 2f;
 
     //Jump Before touching ground
     public float jumpedBeforeTouchingGroundTime = 0.2f;
@@ -45,7 +45,7 @@ public class Jump : MonoBehaviour
             jumpBeforeTouchingGroundTimer = jumpedBeforeTouchingGroundTime;
         }//Checks if player pressed jump button before he touched the ground;
 
-        if (Collisions.isGrounded)
+        if (Collisions.isGrounded  && !inAir)
         {
             coyoteTimeCounter = coyoteTime;
         }
@@ -54,18 +54,21 @@ public class Jump : MonoBehaviour
         {
             jumpBeforeTouchingGroundTimer = 0;
             coyoteTimeCounter = 0;
-            jumpRequest = true;
+            rb.velocity = Vector2.up * jumpForce;
+            //jumpRequest = true;
+            inAir = true;
         }
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * cutJumpHeight);
-        }
+        }//Cortar salto, empieza a caer
 
         if (rb.velocity.y < 0)
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * lastFrame;
-        }
+            inAir = false;
+        }//Caer mas rapido
     }
 
     void FixedUpdate()
