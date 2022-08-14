@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     private float jumpBufferCount;
 
     //Fall faster afterjump
-    public float fallMultiplier = 2.5f;
+    public float fallMultiplier = 2.5f, lowJumpMultiplier = 2;
 
 
     // Start is called before the first frame update
@@ -72,12 +72,11 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpBufferCount = 0;
-            Debug.Log("Salto");
         }
 
-        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0)
+        if (!Input.GetButton("Jump") && rb.velocity.y > 0)
         {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
 
         if (rb.velocity.y < 0)
