@@ -26,4 +26,12 @@ public class Collisions : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawSphere(groudCheckPosition.position, .1f);
     }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Spikes"))
+        {
+            PlayerHandler.ResetPosition(gameObject);
+        }// Respawn
+    }
 }
