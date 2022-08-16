@@ -467,6 +467,7 @@ GameObject:
   - component: {fileID: 140275382}
   - component: {fileID: 140275383}
   - component: {fileID: 140275384}
+  - component: {fileID: 140275387}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Untagged
@@ -604,11 +605,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1475295580}
-  - {fileID: 519420032}
   - {fileID: 2058324361}
   - {fileID: 1961990808}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &140275380
 MonoBehaviour:
@@ -712,6 +712,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 939c5d8c-8299-41f5-a10b-9769e586390e
     m_ActionName: Player/Jump[/Keyboard/space,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4fa759a0-c4b8-4088-97c7-3f5164fba5b3
+    m_ActionName: Player/Dash[/Keyboard/shift,/XInputControllerWindows/rightTrigger]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -729,6 +733,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99affd61b39564a43ad33136bcafeef9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &140275387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140275373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f64d382e5c8bb8647a4ea41c8c9ea7a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bala: {fileID: 5283515621570216231, guid: b33ecec23b21e4746b90a94095f5a4f3, type: 3}
+  spawnPos: {fileID: 1946301491}
 --- !u!1 &393901588
 GameObject:
   m_ObjectHideFlags: 0
@@ -1193,11 +1211,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
-  m_LocalScale: {x: 2.4829633, y: 0.84478205, z: 1}
+  m_LocalPosition: {x: -0.06, y: 1.55, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 140275379}
+  m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &520676912
@@ -1781,7 +1799,7 @@ Transform:
   - {fileID: 1242971586}
   - {fileID: 1275692795}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &695551307
 Animator:
@@ -5070,6 +5088,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1946301490
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1946301491}
+  m_Layer: 0
+  m_Name: SpawnPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1946301491
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946301490}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.47, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1961990808}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1961990807
 GameObject:
   m_ObjectHideFlags: 0
@@ -5100,8 +5149,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1666499017}
+  - {fileID: 1946301491}
   m_Father: {fileID: 140275379}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1961990809
 SpriteRenderer:
@@ -5415,7 +5465,7 @@ Transform:
   - {fileID: 719587925}
   - {fileID: 1269322487}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2044831091
 GameObject:
@@ -5558,7 +5608,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 140275379}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!96 &2058324362
 TrailRenderer:
