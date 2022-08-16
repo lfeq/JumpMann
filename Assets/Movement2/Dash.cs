@@ -1,29 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Dash : MonoBehaviour
 {
     Rigidbody2D rb;
     Movement movement;
+    InputAction dashButton;
+    Vector2 dashingDir;
+    bool isDashing, canDash = true;
+
     public float dashingVelocity = 14, dashingTime = 0.5f;
     public TrailRenderer trail;
-    private Vector2 dashingDir;
-    private bool isDashing, canDash = true;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         movement = GetComponent<Movement>();
+        dashButton = InputManager.playerInput.actions["Dash"];
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && canDash)
+        if ((dashButton.triggered) && canDash)
         {
-            dashingDir = new Vector2(Input.GetAxisRaw("Horizontal"), 0);
+            dashingDir = new Vector2(movement.GetDirection(), 0);
             isDashing = true;
             canDash = false;
             movement.enabled = false;
