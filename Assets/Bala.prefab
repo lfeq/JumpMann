@@ -116,8 +116,8 @@ ConstantForce2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5283515621570216231}
   m_Enabled: 1
-  m_Force: {x: 10, y: 0}
-  m_RelativeForce: {x: 0, y: 0}
+  m_Force: {x: 0, y: 0}
+  m_RelativeForce: {x: 50, y: 0}
   m_Torque: 0
 --- !u!96 &5283515621570216282
 TrailRenderer:

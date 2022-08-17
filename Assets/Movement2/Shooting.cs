@@ -23,7 +23,7 @@ public class Shooting : MonoBehaviour
         {
             GameObject instance = Instantiate(bala, spawnPos.position, Quaternion.identity);
             ConstantForce2D temp_force = instance.GetComponent<ConstantForce2D>();
-            temp_force.force = new Vector2(temp_force.force.x * Movement.lastDirection, temp_force.force.y);
+            temp_force.relativeForce = new Vector2(temp_force.relativeForce.x * Movement.lastDirection, temp_force.relativeForce.y);
             Destroy(instance, 100);
         }//Disparar
     }

@@ -9,7 +9,7 @@ public class Movement : MonoBehaviour
     float direction;
     InputAction move;
 
-    public static float lastDirection;
+    public static float lastDirection = 1;
     public float movementSpeed;
 
     // Start is called before the first frame update
@@ -29,17 +29,24 @@ public class Movement : MonoBehaviour
         if(direction == 1 && lastDirection != direction)
         {
             lastDirection = direction;
-            transform.eulerAngles = new Vector3(0, 0, 0);
+            Flip();
         }//Moviendose a la derecha
         else if(direction == -1 && lastDirection != direction)
         {
             lastDirection = direction;
-            transform.eulerAngles = new Vector3(0, 180, 0);
+            Flip();
         }//Moviendose a la izquierda
     }
 
     public float GetDirection()
     {
         return direction;
+    }
+
+    void Flip()
+    {
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
     }
 }
